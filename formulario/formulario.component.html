@@ -1,0 +1,84 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+	<div class="form-group" [ngClass]="{ 'has-error': errorNombre() }"> <!-- requerido -->
+		<label for="nombre" class="control-label">Nombre</label>
+		<input type="text" formControlName="nombre" class="form-control" id="nombre" name="nombre" placeholder="Nombre del cliente">
+		<small id="emailHelp" class="form-text text-muted">Campo obligatorio a rellenar.</small>
+		<p *ngIf="errorNombre()" id="nombre_error" class="help-block">{{this.serviceErrors.nombre || 'Nombre no válido.'}}</p>
+	</div>
+
+	<div class="form-group" [ngClass]="{ 'has-error': errorEmail() }"> <!-- requerido -->
+		<label for="email" class="control-label">Email</label>
+		<input type="text" formControlName="email" class="form-control" id="email" name="email" placeholder="Email del cliente (cliente@email.com)">
+		<small id="emailHelp" class="form-text text-muted">Campo obligatorio a rellenar.</small>
+		<p *ngIf="errorEmail()" id="email_error" class="help-block">{{this.serviceErrors.email || 'Email no válido.'}}</p>
+	</div>
+	
+	<!-- Comprobar que el documento es valido -->						
+	<div class="form-group" [ngClass]="{ 'has-error': errorDocumentoIdentidad() }"> <!-- requerido -->
+		<label for="documento_identidad" class="control-label">Documento de identidad</label>
+		<input type="text" formControlName="documento_identidad" class="form-control" id="documento_identidad" name="documento_identidad" placeholder="DNI, NIE o NIF del cliente">
+		<small id="emailHelp" class="form-text text-muted">Campo obligatorio a rellenar.</small>
+		<p *ngIf="errorDocumentoIdentidad()" id="documento_identidad_error" class="help-block">{{this.serviceErrors.documento_identidad || 'Documento de identidad no válido.'}}</p>
+	</div>
+	
+	<div class="form-check" [ngClass]="{ 'has-error': errorNewsletter() }"> 
+		<label for="newsletter" class="form-check-label">Subscrito a newsletter</label>
+		<input type="checkbox" formControlName="newsletter" class="form-check-input" id="newsletter" name="newsletter">
+	</div>
+
+	<!-- desplegable -->
+	<div class="form-group" [ngClass]="{ 'has-error': errorCaptacion() }"> <!-- requerido -->
+		<label for="captacion" class="control-label">Tipo de captación</label>
+		<select type="text" formControlName="captacion" class="form-control" id="captacion" name="captacion" placeholder="*****">
+			<option>Telefónica</option>
+			<option>Web</option>
+			<option>Presencial</option>
+		</select>
+		<small id="emailHelp" class="form-text text-muted">Campo obligatorio a rellenar.</small>
+	</div>
+
+	<div class="form-group" [ngClass]="{ 'has-error': errorDireccion() }"> 
+		<label for="direccion" class="control-label">Dirección</label>
+		<input type="text" formControlName="direccion" class="form-control" id="direccion" name="direccion" placeholder="Dirección del cliente">
+		<p *ngIf="errorDireccion()" id="direccion_error" class="help-block">{{this.serviceErrors.direccion || 'Dirección no válida.'}}</p>
+	</div>
+
+	<div class="form-group" [ngClass]="{ 'has-error': errorCodigoPostal() }"> 
+		<label for="codigo_postal" class="control-label">Código postal</label>
+		<input type="text" formControlName="codigo_postal" class="form-control" id="codigo_postal" name="codigo_postal" placeholder="Código postal del cliente">
+		<p *ngIf="errorCodigoPostal()" id="codigo_postal_error" class="help-block">{{this.serviceErrors.codigo_postal || 'Código postal no válido.'}}</p>
+	</div>
+
+	<div class="form-group" [ngClass]="{ 'has-error': errorRegion() }"> 
+		<label for="region" class="control-label">Región</label>
+		<input type="text" formControlName="region" class="form-control" id="region" name="region" placeholder="Región del cliente">
+		<p *ngIf="errorRegion()" id="region_error" class="help-block">{{this.serviceErrors.region || 'Región no válida.'}}</p>
+	</div>
+
+	<div class="form-group" [ngClass]="{ 'has-error': errorCiudad() }"> 
+		<label for="ciudad" class="control-label">Ciudad</label>
+		<input type="text" formControlName="ciudad" class="form-control" id="ciudad" name="ciudad" placeholder="Ciudad del cliente">
+		<p *ngIf="errorCiudad()" id="ciudad_error" class="help-block">{{this.serviceErrors.ciudad || 'Ciudad no válida.'}}</p>
+	</div>
+
+	<div class="form-group" [ngClass]="{ 'has-error': errorPais() }"> 
+		<label for="pais" class="control-label">País</label>
+		<input type="text" formControlName="pais" class="form-control" id="pais" name="pais" placeholder="País del cliente">
+		<p *ngIf="errorPais()" id="pais_error" class="help-block">{{this.serviceErrors.pais || 'País no válido.'}}</p>
+	</div>
+
+	<!-- Campo de comentarios -->
+	<div class="form-group" [ngClass]="{ 'has-error': errorObservaciones() }"> 
+		<label for="observaciones" class="control-label">Observaciones</label>
+		<textarea type="text" formControlName="observaciones" class="form-control" id="observaciones" name="observaciones" rows="3">
+		<p *ngIf="errorObservaciones()" id="observaciones_error" class="help-block">{{this.serviceErrors.observaciones || 'Observaciones no válidas.'}}</p>
+		</textarea>
+	</div>
+	
+	<div class="form-group"> 
+		<button type="submit" class="btn btn-primary">Dar de alta</button>
+	</div>
+
+</form>	
+
